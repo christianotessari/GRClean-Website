@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Grupo Renova Clean - Distribuidora de Produtos de limpeza</title>
+    <script>
+      // Defensive fix for "Uncaught TypeError: Cannot set property fetch of #<Window> which has only a getter"
+      // Some libraries try to wrap fetch, but in many sandboxed environments it is read-only.
+      (function() {
+        try {
+          const originalFetch = window.fetch;
+          if (typeof originalFetch === 'function') {
+            Object.defineProperty(window, 'fetch', {
+              get: function() { return originalFetch; },
+              set: function() { console.warn('Blocked attempt to overwrite read-only window.fetch to prevent crash.'); },
+              configurable: true,
+              enumerable: true
+            });
+          }
+        } catch (e) {
+          // Property might already be non-configurable, which is fine
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+
